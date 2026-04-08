@@ -1,0 +1,211 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #f4f5f7;
+  margin: 0;
+  padding: 20px;
+  text-align: center;
+}
+
+header {
+  margin-bottom: 30px;
+}
+
+#searchInput {
+  padding: 10px 15px;
+  width: 300px;
+  font-size: 16px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+}
+
+
+/* Pokemon Grid System */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Individual Pokemon Card */
+.pokemon-card {
+  background-color: white;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgb(0,0,0,0.05);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+
+.pokemon-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 12px rgb(0,0,0,0.1);
+}
+
+.pokemon-card img {
+  width: 120px;
+  height: 120px;
+}
+
+.pokemon-card h3 {
+  text-transform: capitalize;
+  margin: 10px 0 5px;
+  color: #333;
+}
+
+
+.pokemon-card p {
+  color: #888;
+  margin: 0 0 10px;
+  font-weight: bold;
+}
+
+
+.type-badge {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+  margin: 2px;
+  text-transform: capitalize;
+  background-color: #e0e0e0;
+  color: #333;
+}
+
+
+#loadMoreBtn {
+  padding: 10px 25px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 20px 0 50px;
+}
+
+
+
+/* Modal Skeleton */
+#pokemon-modal {
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  
+  /* These flex rules center the modal! */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* This is the crucial class to hide the modal initially */
+.hidden {
+  display: none !important;
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 15px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  text-align: left;
+}
+
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #aaa;
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  color: #333;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.modal-header h2 {
+  margin: 0;
+  text-transform: capitalize;
+}
+
+#modalImage {
+  display: block;
+  margin: 0 auto 20px;
+  width: 200px;
+  height: 200px;
+}
+
+.modal-section {
+  margin-bottom: 15px;
+}
+
+.modal-section h3 {
+  margin-bottom: 5px;
+  font-size: 16px;
+  color: #555;
+}
+
+.stats-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.stats-list li {
+  background: #f4f5f7;
+  margin-bottom: 5px;
+  padding: 8px 12px;
+  border-radius: 5px;
+  font-size: 14px;
+  text-transform: capitalize;
+  display: flex;
+  justify-content: space-between;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 25px;
+  padding-top: 15px;
+  border-top: 2px solid #eee;
+}
+
+.modal-footer button {
+  padding: 10px 20px;
+  cursor: pointer;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+.modal-footer button:hover {
+  background-color: #555;
+}
