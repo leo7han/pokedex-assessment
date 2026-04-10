@@ -3,65 +3,173 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pokedex - Old St. Labs</title>
+  <title>The Rotom Dex</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-  <header>
-    <h1>Pokedex</h1>
-    <div id="controls">
-      <input type="text" id="search" placeholder="Search by Name or ID">
-
-      <select id = "sortDropdown">
-        <option value="id-asc">Sort by ID (Lowest First)</option>
-        <option value="id-desc">Sort by ID (Highest First)</option>
-        <option value="name-asc">Sort by Name (A-Z)</option>
-        <option value="name-desc">Sort by Name (Z-A)</option>
-      </select>
-    </div>
-  </header>
   
-  <main>
-    <div id="pokedex-container" class="grid-container"></div>
+  <div id="pokedex-doors">
+    <div class="rotom-dex" id="intro-rotom">
+      <div class="rotom-core">
+        <div class="rotom-spike-border"></div>
+        <div class="rotom-spike-fill"></div>
+        <div class="rotom-cheek left"></div>
+        <div class="rotom-cheek right"></div>
+        <div class="r-dot d1"></div><div class="r-dot d2"></div><div class="r-dot d3"></div>
+        <div class="r-dot d4"></div><div class="r-dot d5"></div><div class="r-dot d6"></div>
+        <div class="rotom-foot left"></div>
+        <div class="rotom-foot right"></div>
+        <div class="rotom-mask"></div>
+        <div class="rotom-screen-container">
+          <div class="rotom-screen">
+            <div class="mag-glass"></div>
+            <div class="mag-handle"></div>
+            <div class="smile">
+              <div class="tooth"></div>
+              <div class="tooth"></div>
+            </div>
+          </div>
+        </div>
+        <div class="rotom-eye left"><div class="rotom-pupil"></div></div>
+        <div class="rotom-eye right"><div class="rotom-pupil"></div></div>
+      </div>
+      <div class="rotom-arm left">
+        <div class="arm-h"></div>
+        <div class="arm-v"></div>
+        <div class="arm-hand"><div class="hand-indent"></div></div>
+      </div>
+      <div class="rotom-arm right">
+        <div class="arm-h"></div>
+        <div class="arm-v"></div>
+        <div class="arm-hand"><div class="hand-indent"></div></div>
+      </div>
+    </div>
+    <div class="door left"></div>
+    <div class="door right"></div>
+  </div>
 
-    <button id="loadMoreBtn">Load More</button>
-  </main>
+  <div class="app-container">
+    <aside class="left-panel">
+      <header>
+        <div class="header-main">
+          
+          <div class="pokeball-logo" id="homeBtn" title="Home">
+            <div class="pokeball-center"></div>
+          </div>
+          
+          <div class="header-controls">
+            <button id="viewToggleBtn" class="view-toggle-btn" title="Toggle Grid/List View">
+              <span class="icon-grid">⊞</span>
+            </button>
+
+            <input type="text" id="search" placeholder="Search Name or ID...">
+            
+            <div class="custom-sort" id="customSort">
+              <div class="sort-selected">
+                <span class="sort-text">Sort ID (Lowest)</span>
+                <span class="sort-arrow">▼</span>
+              </div>
+              <div class="sort-options">
+                <div class="sort-option" data-value="id-asc">Sort ID (Lowest)</div>
+                <div class="sort-option" data-value="id-desc">Sort ID (Highest)</div>
+                <div class="sort-option" data-value="name-asc">Sort Name (A-Z)</div>
+                <div class="sort-option" data-value="name-desc">Sort Name (Z-A)</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </header>
+
+      <div class="main-content-wrapper">
+        
+        <div class="display-row">
+          <div class="featured-rounded-rectangle">
+            <img id="featuredImage" src="" alt="Featured">
+          </div>
+          <div class="information-section">
+            <h3 class="info-title">INFORMATION</h3>
+            <div class="info-content" id="featuredInfo">
+              Loading data...
+            </div>
+          </div>
+        </div>
+
+        <div class="stats-row">
+          <div class="stat-box" id="stat-id">#001</div>
+          <div class="stat-box" id="stat-name">Bulbasaur</div>
+          <div class="stat-box" id="stat-type"></div>
+          <button class="stat-box" id="viewDetailsBtn">Details</button>
+        </div>
+
+      </div>
+
+      <div class="theme-toggle" id="themeToggle" title="Toggle Theme">
+        <div class="theme-icon"></div>
+      </div>
+      
+      <div class="about-btn" id="aboutBtn" title="About">?</div>
+
+    </aside>
+
+    <main class="right-panel">
+      <div id="pokedex-container" class="list-container"></div>
+      <button id="loadMoreBtn">Load More</button>
+    </main>
+  </div>
 
   <div id="pokemon-modal" class="hidden">
     <div class="modal-content">
       <span id="closeModal" class="close-btn">&times;</span>
-      
       <div class="modal-header">
         <h2 id="modalName">Name</h2>
         <span id="modalId">#000</span>
       </div>
-
-      <img id="modalImage" src="" alt="Pokemon">
-      
-      <div class="modal-body">
-        <p><strong>Height:</strong> <span id="modalHeight"></span></p>
-        <p><strong>Weight:</strong> <span id="modalWeight"></span></p>
+      <div class="modal-split">
         
-        <div class="modal-section">
-          <h3>Types</h3>
-          <div id="modalTypes" class="types"></div>
+        <div class="modal-left">
+          <div class="chart-container"><canvas id="statsRadarChart"></canvas></div>
+          <div id="modalStats" class="stats-grid"></div>
         </div>
 
-        <div class="modal-section">
-          <h3>Weaknesses</h3>
-          <div id="modalWeaknesses" class="types"></div>
+        <div class="modal-right" id="modalRight">
+          <img id="modalImage" src="" alt="Pokemon" class="modal-sprite">
+          
+          <div class="details-box">
+            <div class="hw-row">
+              <div class="hw-box">Height <span class="stat-divider">|</span> <span id="modalHeight"></span></div>
+              <div class="hw-box">Weight <span class="stat-divider">|</span> <span id="modalWeight"></span></div>
+            </div>
+            
+            <div class="modal-section">
+              <h3 class="section-title">Types</h3>
+              <div id="modalTypes" class="types"></div>
+            </div>
+            
+            <div class="modal-section">
+              <h3 class="section-title">Weaknesses</h3>
+              <div id="modalWeaknesses" class="types"></div>
+            </div>
+          </div>
+
+          <div class="modal-nav-buttons">
+            <button id="prevBtn">&laquo; Previous</button>
+            <button id="nextBtn">Next &raquo;</button>
+          </div>
         </div>
 
-        <div class="modal-section">
-          <h3>Base Stats</h3>
-          <ul id="modalStats" class="stats-list"></ul>
-        </div>
       </div>
+    </div>
+  </div> 
 
-      <div class="modal-footer">
-        <button id="prevBtn">&laquo; Previous</button>
-        <button id="nextBtn">Next &raquo;</button>
-      </div>
+  <div id="about-modal" class="hidden">
+    <div class="modal-content about-content">
+      <span id="closeAboutModal" class="close-btn">&times;</span>
+      <h2>The developer loves Pokemon! Pokemon has been his favorite game ever since he was a child.</h2>
     </div>
   </div>
 
