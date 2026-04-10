@@ -3,7 +3,7 @@
 A responsive, feature-rich Pokédex web application built as a technical assessment for the Old.St Labs Internship Program. 
 This project fetches live data from the PokeAPI (https://pokeapi.co/) to display a comprehensive list of Pokémon, complete with a custom CSS Rotom Dex intro animation!
 
-## ✨ Features
+## Features
 
 * **Dynamic Data Fetching:** Fetches and displays Pokémon data efficiently using pagination (10 Pokémon per load) via a "Load More" button.
 * **Dual View Modes:** Seamlessly toggle between a detailed **Grid View** (showing sprite, name, ID, and types) and a sleek, minimalist **List View**.
@@ -19,7 +19,7 @@ This project fetches live data from the PokeAPI (https://pokeapi.co/) to display
 * **Dark Mode:** Fully supported dark/light theme toggle for better user accessibility and preference.
 * **Rotom Dex Animation:** A purely CSS-driven 5-second intro animation of the Rotom Dex opening up the application.
 
-## 🛠️ Technologies Used
+## Technologies Used
 
 * **HTML5:** Semantic markup and structure.
 * **CSS3:** Advanced styling, CSS Grid/Flexbox layouts, dark mode variables, and complex `@keyframes` animations.
